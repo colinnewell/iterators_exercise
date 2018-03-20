@@ -95,6 +95,21 @@ private:
 template <typename T>
 class vector_iterator {
 public:
+    using difference_type = std::ptrdiff_t ;
+    using iterator_category = std::forward_iterator_tag;
+    using pointer = T*;
+    using reference = T&;
+    using value_type = T;
+
+    T& operator*() {
+        return *element_;
+    }
+
+    vector_iterator<T>& operator++() {
+        element_++;
+        return this;
+    }
+
 
 private:
     T* element_ = nullptr;
