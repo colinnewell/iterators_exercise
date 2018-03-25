@@ -96,7 +96,7 @@ template <typename T>
 class vector_iterator {
 public:
     using difference_type = std::ptrdiff_t ;
-    using iterator_category = std::forward_iterator_tag;
+    using iterator_category = std::bidirectional_iterator_tag;
     using pointer = T*;
     using reference = T&;
     using value_type = T;
@@ -131,6 +131,19 @@ public:
     vector_iterator<T> operator++(int) {
         vector_iterator<T> copy{element_};
         ++element_;
+        return copy;
+    }
+
+    // prefix
+    vector_iterator<T>& operator--() {
+        --element_;
+        return *this;
+    }
+
+    // postfix
+    vector_iterator<T> operator--(int) {
+        vector_iterator<T> copy{element_};
+        --element_;
         return copy;
     }
 
