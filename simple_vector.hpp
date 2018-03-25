@@ -96,11 +96,12 @@ template <typename T>
 class vector_iterator {
 public:
     using difference_type = std::ptrdiff_t ;
-    using iterator_category = std::input_iterator_tag;
+    using iterator_category = std::forward_iterator_tag;
     using pointer = T*;
     using reference = T&;
     using value_type = T;
 
+    vector_iterator() = default;
     vector_iterator(T* elements) : element_(elements) {}
 
     T& operator*() {
