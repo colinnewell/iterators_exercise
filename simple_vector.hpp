@@ -96,18 +96,41 @@ template <typename T>
 class vector_iterator {
 public:
     using difference_type = std::ptrdiff_t ;
-    using iterator_category = std::forward_iterator_tag;
+    using iterator_category = std::input_iterator_tag;
     using pointer = T*;
     using reference = T&;
     using value_type = T;
+
+    vector_iterator(T* elements) : element_(elements) {}
 
     T& operator*() {
         return *element_;
     }
 
+    bool operator==(const vector_iterator<T>& b) const {
+        return element_ == b.element_;
+    }
+
+    bool operator!=(const vector_iterator<T>& b) const {
+        return element_ != b.element_;
+    }
+
+    T* operator->() {
+        return element_;
+    }
+
+
+    // prefix
     vector_iterator<T>& operator++() {
-        element_++;
-        return this;
+        ++element_;
+        return *this;
+    }
+
+    // postfix
+    vector_iterator<T> operator++(int) {
+        vector_iterator<T> copy{element_};
+        ++element_;
+        return copy;
     }
 
 
