@@ -147,10 +147,24 @@ public:
         return copy;
     }
 
+    vector_iterator<T>& operator+=(int rhs) {
+        element_ += rhs;
+    }
+
+    bool operator<(const vector_iterator<T> &rhs) const {
+        return element_ < rhs.element_;
+    }
+
+    bool operator>(const vector_iterator<T> &rhs) const {
+        return element_ > rhs.element_;
+    }
 
 private:
     T* element_ = nullptr;
 };
 
+template <typename  T> bool operator==(const vector_iterator<T> &lhs, const vector_iterator<T> &rhs) {
+    return lhs.element_ == rhs.element_;
+}
 
 #endif
